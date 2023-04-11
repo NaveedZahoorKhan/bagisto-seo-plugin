@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+
+  web_server:
+
+    container_name: bagisto
+    restart: always
+    working_dir: /var/www/html
+    build: .
+    volumes:
+      - .:/var/www/html
+    networks:
+      - bagisto-network
+    ports:
+      - 80:80
+    expose:
+      - 80
+    depends_on:
+      - database_server
+    links:
+      - database_server
+  database_server:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'bagisto'
+      MYSQL_USER: 'navi'
+      MYSQL_PASSWORD: '12344321'
+      MYSQL_ROOT_PASSWORD: '12344321'
+      MYSQL_ROOT_HOST: '%'
+    networks:
+      - bagisto-network
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./dbvolume:/var/lib/mysql
+
+volumes:
+  dbvolume:
+  app:
+
+
+networks:
+  bagisto-network:
+    driver: bridge
