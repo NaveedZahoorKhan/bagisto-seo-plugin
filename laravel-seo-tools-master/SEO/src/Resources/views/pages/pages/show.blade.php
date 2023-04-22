@@ -29,6 +29,6 @@
     </div>
 
 @endsection
-@section('content')
+@section('content-wrapper')
     @include('seo::includes.analysis')
 @endSection

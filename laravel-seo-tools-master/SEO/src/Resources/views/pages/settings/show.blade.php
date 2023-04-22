@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content')
+@section('content-wrapper')
     <div class="row">
         <div class="col-sm-8">
             <h1>

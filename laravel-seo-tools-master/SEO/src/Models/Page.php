@@ -160,6 +160,7 @@ class Page extends Model
         $sql .= ' where m.status=:status and m.visibility=:visibility';
         $params['status'] = 'active';
         $params['visibility'] = 'page';
+
         return MetaTag::parseTags(DB::select($sql, $params), $this);
     }
 

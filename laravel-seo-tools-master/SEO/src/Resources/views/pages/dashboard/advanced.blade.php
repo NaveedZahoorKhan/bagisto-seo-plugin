@@ -6,7 +6,7 @@
 @section('tools')
 
 @endsection
-@section('content')
+@section('content-wrapper')
     <nav class="nav nav-tabs" id="seo-settings-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-social-tab" data-toggle="tab" href="#nav-robot-txt" role="tab"
            aria-controls="nav-social" aria-selected="true"> Robots.txt

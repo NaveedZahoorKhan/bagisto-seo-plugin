@@ -30,7 +30,7 @@
         <a class="btn btn-outline-secondary" href="{{route('seo::pages.create')}}"><i class="fa fa-plus"></i></a>
     </div>
 @endsection
-@section('content')
+@section('content-wrapper')
     <form method="get" class="m-form">
         <div class="row">
             <div class="col-md-6">

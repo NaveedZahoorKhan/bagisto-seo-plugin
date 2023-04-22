@@ -11,7 +11,7 @@
 @section('tools')
     <a href="{{route('seo::pages.images.create',['page'=>$page->id])}}"><i class="fa fa-plus"></i></a>
 @endsection
-@section('content')
+@section('content-wrapper')
     <div class="row">
         <div class='col-md-12'>
             <div class='panel panel-default'>

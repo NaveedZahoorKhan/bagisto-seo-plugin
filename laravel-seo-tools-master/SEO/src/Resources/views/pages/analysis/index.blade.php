@@ -4,7 +4,7 @@
 <li class="breadcrumb-item">Analysis</li>
 @endsection
 
-@section('content')
+@section('content-wrapper')
 <form method="get">
     <div class="row">
         <div class="form-group col-5">

@@ -7,7 +7,7 @@
         <i class="fa fa-plus"></i> New Page
     </a>
 @endsection
-@section('content')
+@section('content-wrapper')
     <form action="{{route('seo::pages.bulkUpdate')}}" method="post">
         {{csrf_field()}}
 

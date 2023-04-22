@@ -57,11 +57,9 @@ class MetaTagController extends Controller
     {
         $model = new MetaTag;
         $model->fill($request->all());
-
         if ($model->save()) {
-
             session()->flash(config('seo.flash_message'), 'MetaTag saved successfully');
-            return redirect()->route('seo::meta-tags.index');
+            return redirect()->route('meta-tags.index');
         } else {
             session()->flash(config('seo.flash_error'), 'Something is wrong while saving MetaTag');
         }

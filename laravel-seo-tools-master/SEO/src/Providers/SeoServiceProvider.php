@@ -91,6 +91,9 @@ class SeoServiceProvider extends ServiceProvider
         });
         Event::listen(['eloquent.saved: *', 'eloquent.created: *'], function ($name, $models) {
             $modelConfig = config('rastventure.seo.models');
+            if (empty($modelConfig)) {
+                return;
+            }
             $modelNames = array_keys($modelConfig);
 
             foreach ($models as $model) {

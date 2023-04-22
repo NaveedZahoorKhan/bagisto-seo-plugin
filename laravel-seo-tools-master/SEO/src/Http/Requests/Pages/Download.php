@@ -15,7 +15,7 @@ class Download extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('download', Page::class);
+        return true;
     }
 
     /**

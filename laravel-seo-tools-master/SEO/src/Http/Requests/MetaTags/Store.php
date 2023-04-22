@@ -1,6 +1,6 @@
 <?php
 
-namespace SEO\Http\Requests\MetaTags;
+namespace RastVenture\SEO\Http\Requests\MetaTags;
 
 use Illuminate\Foundation\Http\FormRequest;
 use SEO\Models\MetaTag;
@@ -15,7 +15,7 @@ class Store extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('create', MetaTag::class);
+        return true;
     }
 
     /**

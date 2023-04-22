@@ -11,7 +11,7 @@
     <a target="_blank" href="{{url($record->path)}}">Visit Page</a>
 
 @endsection
-@section('content')
+@section('content-wrapper')
     <div class="row">
 
     </div>

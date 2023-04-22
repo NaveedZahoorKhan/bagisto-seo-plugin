@@ -5,7 +5,7 @@
  * Time: 4:08 PM
  */
 
-namespace SEO\Jobs;
+namespace RastVenture\SEO\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use SEO\Services\SiteMap;
+use Rastventure\SEO\Services\SiteMap;
 
 
 class SitemapGeneratorJob implements ShouldQueue

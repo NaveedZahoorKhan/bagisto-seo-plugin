@@ -3,7 +3,7 @@ return [
     /**
      * Layout's to be used on package pages
      */
-    'layout' => 'seo::layouts.app',
+    'layout' => 'admin::layouts.master',
     /**
      * Middleware that will wrap up seo routes
      */

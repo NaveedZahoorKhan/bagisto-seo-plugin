@@ -9,7 +9,7 @@
     <a href="{{route('seo::pages.create')}}"><i class="fa fa-plus"></i></a>
 
 @endsection
-@section('content')
+@section('content-wrapper')
     @include('seo::includes.page_meta_tags')
 @endSection
 

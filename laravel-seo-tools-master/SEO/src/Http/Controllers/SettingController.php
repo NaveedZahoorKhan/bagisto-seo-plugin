@@ -10,6 +10,9 @@ use Rastventure\SEO\Models\Setting;
 use Rastventure\SEO\Services\HtaccessFile;
 use Rastventure\SEO\Services\RobotTxt;
 use Rastventure\SEO\Services\SiteMap;
+use Rastventure\SEO\Http\Requests\Pages\Store;
+use Rastventure\SEO\Http\Requests\Pages\Edit;
+use Rastventure\SEO\Http\Requests\Pages\Update;
 use Webkul\Core\Repositories\CoreConfigRepository;
 use Webkul\Core\Tree;
 
@@ -140,13 +143,28 @@ class SettingController  extends \Webkul\Admin\Http\Controllers\Controller
     {
         $settings = $request->get('settings', []);
         foreach ($settings as $key => $fields) {
-            Setting::where('key', $key)->update($fields);
+            $setting = Setting::where('key', $key)->first();
+            if(empty($setting))
+                $setting = new Setting();
+            // Update the fields
+            $setting->key = $key;
+            $setting->value = $fields['value'];
+
+            // Save the changes to the database
+            $setting->save();
         }
         $fields = $request->file('settings', []);
         $files = Setting::upload($fields);
-
         foreach ($files as $key => $fileFields) {
-            Setting::where('key', $key)->update($fileFields);
+            $setting = Setting::where('key', $key)->first();
+            if(empty($setting))
+                $setting = new Setting();
+            // Update the fields
+            $setting->key = $key;
+            $setting->value = $fileFields['value'];
+
+            // Save the changes to the database
+            $setting->save();
         }
         session()->flash(config('seo.flash_message'), 'Setting successfully updated');
         return redirect()->back();

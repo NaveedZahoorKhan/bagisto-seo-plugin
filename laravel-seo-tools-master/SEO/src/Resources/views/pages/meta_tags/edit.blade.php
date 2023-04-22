@@ -7,7 +7,7 @@
 @section('tools')
     <a href="{{route('seo::meta-tags.create')}}"><span class="fa fa-plus"></span></a>
 @endsection
-@section('content')
+@section('content-wrapper')
     <div class="row">
         <div class='col-md-12'>
             <div class='panel panel-default'>

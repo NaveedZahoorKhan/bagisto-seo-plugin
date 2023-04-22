@@ -194,7 +194,7 @@ class SiteMap
      */
     public function mergeIntoOne()
     {
-        $template = __DIR__ . '/../../resources/assets/sitemap-group.xml';
+        $template = __DIR__ . '/../Resources/assets/sitemap-group.xml';
         $groupXml = simplexml_load_file($template);
         $files = $this->all();
         foreach ($files as $file) {

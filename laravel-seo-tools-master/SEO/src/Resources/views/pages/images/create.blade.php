@@ -12,7 +12,7 @@
 @section('tools')
     <a href="{{route('seo::pages.show',$page->id)}}">Visit Page</a>
 @endsection
-@section('content')
+@section('content-wrapper')
     <div class="row">
         <div class='col-md-12'>
             <div class='panel panel-default'>

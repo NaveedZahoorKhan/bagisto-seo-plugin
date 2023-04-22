@@ -94,7 +94,8 @@ class PageController extends Controller
     {
         $page = new Page();
         $metaTags = $page->pageLevel();
-
+        $og = null;
+        $twitter = null;
         if (isset($metaTags['og'])) {
             $og = $metaTags['og'];
             unset($metaTags['og']);
@@ -347,12 +348,11 @@ class PageController extends Controller
             ];
         }
         array_unshift($data, $headline);
-
-        $fileManager->config([
+        $manager = $fileManager->config([
             'file_path' => $filePath,
             'data' => $data
-        ])->write();
-
+        ]);
+        $manager->write();
         if (file_exists($filePath)) {
             return response()->download($filePath);
         }

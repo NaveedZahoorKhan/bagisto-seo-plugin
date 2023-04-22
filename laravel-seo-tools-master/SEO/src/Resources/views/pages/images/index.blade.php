@@ -13,7 +13,7 @@
     <a href="{{route('seo::pages.show',['page'=>$page->id])}}">Visit Page</a>
     <a href="{{route('seo::pages.images.create',['page'=>$page->id])}}"><i class="fa fa-plus"></i></a>
 @endsection
-@section('content')
+@section('content-wrapper')
     <div class="card-deck">
         @foreach($records->chunk(3) as $recordChunk)
             @foreach($recordChunk as $record)

@@ -7,7 +7,7 @@
         <i class="fa fa-plus"></i> New Page
     </a>
 @endsection
-@section('content')
+@section('content-wrapper')
     <div class="row">
         <div class='col-md-12'>
             <div class='panel panel-default'>

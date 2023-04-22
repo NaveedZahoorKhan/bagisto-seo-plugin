@@ -1,6 +1,6 @@
 <?php
 
-namespace SEO\Http\Requests\MetaTags;
+namespace Rastventure\SEO\Http\Requests\MetaTags;
 
 use Illuminate\Foundation\Http\FormRequest;
 use SEO\Models\MetaTag;
@@ -15,7 +15,8 @@ class Index extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('index', MetaTag::class);
+        return true;
+        // return auth()->user()->can('index', MetaTag::class);
     }
 
     /**

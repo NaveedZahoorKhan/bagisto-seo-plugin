@@ -5,7 +5,7 @@
 @endsection
 @section('tools')
 @endsection
-@section('content')
+@section('content-wrapper')
 
 
 <nav class="nav nav-tabs" id="seo-settings-tab" role="tablist">

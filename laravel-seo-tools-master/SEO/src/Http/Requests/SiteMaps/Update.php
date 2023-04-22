@@ -1,6 +1,6 @@
 <?php
 
-namespace SEO\Http\Requests\SiteMaps;
+namespace Rastventure\SEO\Http\Requests\SiteMaps;
 
 use Illuminate\Foundation\Http\FormRequest;
 use SEO\Models\Setting;
@@ -15,7 +15,7 @@ class Update extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('index', Setting::class);
+        return true;
     }
 
     /**

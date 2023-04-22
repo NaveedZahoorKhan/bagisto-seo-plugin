@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="nav-sitemap" role="tabpanel" aria-labelledby="nav-sitemap-tab">
-    <form action="{{route('seo::settings.store')}}" method="post">
+    <form action="{{route('settings.store')}}" method="post">
         {{csrf_field()}}
         <div class="row">
             <div class="form-group col-sm-6">
@@ -53,7 +53,7 @@
             <ul class="list-group">
                 <li class="list-group-item list-group-item-heading list-group-item-primary">
                     Your SiteMaps &nbsp;&nbsp; &nbsp;&nbsp;
-                    <form action="{{route('seo::sitemap.generate')}}" method="post" style="display: inline">
+                    <form action="{{route('sitemap.generate')}}" method="post" style="display: inline">
                         {{csrf_field()}}
                         <input type="submit"  value="Generate" class="btn btn-primary btn-sm">
                     </form>

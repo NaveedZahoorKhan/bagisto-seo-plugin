@@ -1,5 +1,5 @@
 <div class="tab-pane show active" id="nav-social" role="tabpanel" aria-labelledby="nav-social-tab">
-    <form action="{{route('seo::settings.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('settings.store')}}" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
 
 
