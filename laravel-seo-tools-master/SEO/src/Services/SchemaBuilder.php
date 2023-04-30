@@ -9,7 +9,7 @@ namespace Rastventure\SEO\Services;
 
 
 use Illuminate\Support\Collection;
-use SEO\Models\Setting;
+use Rastventure\SEO\Models\Setting;
 
 class SchemaBuilder
 {

@@ -15,7 +15,7 @@ class BulkUpdate extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('bulkUpdate', Page::class);
+        return true;
     }
 
     /**

@@ -51,7 +51,7 @@
 @if(isset($showPageUrl) && !empty($showPageUrl))
     <div class="form-group">
         <label for="page_path">Page Url</label>
-        <input type="text" class="form-control" name="page[path]" id="page_path"
+        <input type="url" class="form-control" name="page[path]" id="page_path"
                value="{{old('page.path',$model->path)}}"
                placeholder="Relative path to your page" maxlength="255" required="required">
         @if($errors->has('page.path'))

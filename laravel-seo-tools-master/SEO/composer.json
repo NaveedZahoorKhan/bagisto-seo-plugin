@@ -33,6 +33,9 @@
       "Rastventure\\SEO\\": "src/"
     }
   },
+  "files": [
+    "src/providers/SeoServiceProvider.php"
+  ],
   "extra": {
     "laravel": {
       "providers": [

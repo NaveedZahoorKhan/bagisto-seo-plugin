@@ -15,7 +15,7 @@ class Upload extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('upload', Page::class);
+        return true;
     }
 
     /**

@@ -44,7 +44,8 @@ class SiteMap
      */
     protected function pageTemplate()
     {
-        $template = __DIR__ . '/../../resources/assets/sitemap.xml';
+        
+        $template = __DIR__ . '/../Resources/assets/sitemap.xml';
         $this->simpleXml = simplexml_load_file($template);
         return $this;
     }
@@ -214,6 +215,7 @@ class SiteMap
     {
         $dirIt = new \DirectoryIterator($this->filePath);
         foreach ($dirIt as $file) {
+
             if ($file->isDot()) continue;
             if ($file->getExtension() != 'xml') continue;
             unlink($file->getRealPath());

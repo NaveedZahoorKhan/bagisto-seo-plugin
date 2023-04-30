@@ -114,6 +114,9 @@ class SeoServiceProvider extends ServiceProvider
                 }
             }
         });
+        $this->app->bind(Seeder::class, function () {
+            return new \Rastventure\SEO\Database\Seeders\SeoTablesSeeder();
+        });
     }
 
     /**

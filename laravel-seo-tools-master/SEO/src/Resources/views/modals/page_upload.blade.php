@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body">
                     <label class="custom-file">
-                        <input type="file" name="file" id="file2" class="custom-file-input form-control-lg">
+                        <input type="file" name="file" id="file2" class="formcontrol-lg">
                         <span class="custom-file-control"></span>
                     </label>
                 </div>

@@ -130,7 +130,7 @@ class PageController extends Controller
             $tag = new Tag($model);
             $tag->make()->save();
             session()->flash(config('seo.flash_message'), 'Page saved successfully');
-            return redirect()->route('seo::pages.index');
+            return redirect()->route('pages.index');
         } else {
             session()->flash(config('seo.flash_error'), 'Something is wrong while saving Page');
         }
@@ -333,6 +333,9 @@ class PageController extends Controller
         $pages = Page::all($headline);
         $fileManager = new FileCsv();
         $filePath = storage_path('app/public/pages/' . uniqid(date('Ymd_')) . '.csv');
+        if(!file_exists(storage_path('app/public/pages'))){
+            mkdir(storage_path('app/public/pages'), 0777, true);
+        }
         $data = [];
         foreach ($pages as $page) {
             $data[] = [
@@ -398,7 +401,9 @@ class PageController extends Controller
 
         $pages = Page::all();
         $cachePath = config('seo.cache.storage');
-
+        if (!file_exists($cachePath)) {
+            mkdir($cachePath, 0777, true);
+        }
         foreach ($pages as $page) {
             if (!file_exists($cachePath . "/" . $page->id . 'html')) {
                 $tag = new Tag($page);
@@ -408,6 +413,7 @@ class PageController extends Controller
 
         $zip = new \ZipArchive;
         $zip->open($zipname, \ZipArchive::CREATE);
+        
         $dir = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($cachePath), \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($dir as $name => $it) {
             if (in_array($it->getBasename(), [".", ".."])) {
@@ -417,8 +423,11 @@ class PageController extends Controller
             $filePath = is_object($pageModel) ? $pageModel->path . '.html' : $it->getBasename();
             $zip->addFile($it->getPathname(), $filePath);
         }
-
+ 
         $zip->close();
+        if (file_exists($zipname)) {
+            return response()->download($zipname);
+        }
         return response()->download($zipname);
     }
 
