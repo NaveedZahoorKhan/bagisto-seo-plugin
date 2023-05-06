@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+
+  web_server_fresh:
+
+    container_name: bagisto-fresh
+    restart: always
+    working_dir: /var/www/html
+    build: .
+    volumes:
+      - .:/var/www/html
+    networks:
+      - bagisto-fresh-network
+    ports:
+      - 8080:80
+    expose:
+      - 8080
+    depends_on:
+      - database_server_fresh
+    links:
+      - database_server_fresh
+  database_server_fresh:
+    image: mysql:latest
+    container_name: mysql-fresh
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'bagisto'
+      MYSQL_USER: 'navi'
+      MYSQL_PASSWORD: '12344321'
+      MYSQL_ROOT_PASSWORD: '12344321'
+      MYSQL_ROOT_HOST: '%'
+    networks:
+      - bagisto-fresh-network
+    ports:
+      - '3307:3306'
+    expose:
+      - '3307'
+    volumes:
+      - ./dbvolume:/var/lib/mysql
+
+volumes:
+  dbvolume:
+  app:
+
+
+networks:
+  bagisto-fresh-network:
+    driver: bridge
