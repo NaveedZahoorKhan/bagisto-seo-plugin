@@ -2,8 +2,8 @@
 
 namespace Rastventure\SEO\Providers;
 
-use App\Policies\Seo\MetaTagPolicy;
-use App\Policies\Seo\SettingPolicy;
+use Rastventure\SEO\Policies\MetaTagPolicy;
+use Rastventure\SEO\Policies\SettingPolicy;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Blade;

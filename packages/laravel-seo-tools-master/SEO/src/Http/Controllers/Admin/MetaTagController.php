@@ -75,7 +75,7 @@ class MetaTagController extends Controller
      */
     public function edit(Edit $request, MetaTag $meta_tag)
     {
-        return view('seo::pages.meta_tags.edit', [
+        return view('seo::admin.pages.meta_tags.edit', [
             'model' => $meta_tag,
         ]);
     }
