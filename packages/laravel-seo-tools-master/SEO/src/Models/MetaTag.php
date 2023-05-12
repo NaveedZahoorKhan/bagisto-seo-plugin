@@ -4,6 +4,7 @@ namespace Rastventure\SEO\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Rastventure\SEO\Contracts\MetaTag as MetaTagContract;
 
 /**
  * @property varchar $name name
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\DB;
  * @property timestamp $updated_at updated at
  * @property \Illuminate\Database\Eloquent\Collection $seoPageMetaTag hasMany
  */
-class MetaTag extends Model
+class MetaTag extends Model implements MetaTagContract
 {
 
     /**

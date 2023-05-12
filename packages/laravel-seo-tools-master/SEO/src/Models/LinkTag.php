@@ -3,6 +3,7 @@
 namespace Rastventure\SEO\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Rastventure\SEO\Contracts\LinkTag as LinkTagContract;
 
 /**
    @property varchar $rel rel
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 @property timestamp $updated_at updated at
    
  */
-class LinkTag extends Model
+class LinkTag extends Model implements LinkTagContract
 {
 
     /**
