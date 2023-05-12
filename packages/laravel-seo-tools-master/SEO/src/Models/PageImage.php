@@ -3,6 +3,7 @@
 namespace Rastventure\SEO\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Rastventure\SEO\Contracts\PageImage as PageImageContract;
 
 /**
  * @property varchar $src src
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property timestamp $updated_at updated at
  * @property Page $page belongsTo
  */
-class PageImage extends Model
+class PageImage extends Model implements PageImageContract
 {
 
     /**
