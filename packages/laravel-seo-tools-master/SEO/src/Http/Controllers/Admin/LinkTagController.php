@@ -3,6 +3,7 @@
 namespace Rastventure\SEO\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Rastventure\SEO\Repositories\LinkTagRepository;
 use SEO\Http\Requests\LinkTags\Create;
 use SEO\Http\Requests\LinkTags\Destroy;
 use SEO\Http\Requests\LinkTags\Edit;
@@ -10,7 +11,7 @@ use SEO\Http\Requests\LinkTags\Index;
 use SEO\Http\Requests\LinkTags\Show;
 use SEO\Http\Requests\LinkTags\Store;
 use SEO\Http\Requests\LinkTags\Update;
-use SEO\Models\LinkTag;
+use Rastventure\SEO\Models\LinkTag;
 
 /**
  * Description of LinkTagController
@@ -19,6 +20,12 @@ use SEO\Models\LinkTag;
  */
 class LinkTagController extends Controller
 {
+    protected $linkTagRepository;
+    public function __construct(LinkTagRepository $linkTagRepository)
+    {
+        $this->linkTagRepository = $linkTagRepository;
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -51,10 +58,7 @@ class LinkTagController extends Controller
      */
     public function store(Store $request)
     {
-        $model = new LinkTag;
-        $model->fill($request->all());
-
-        if ($model->save()) {
+        if ($this->linkTagRepository->create($request->all())) {
 
             session()->flash('app_message', 'LinkTag saved successfully');
             return redirect()->route('seo_link_tags.index');
@@ -76,7 +80,6 @@ class LinkTagController extends Controller
 
         return view('linktag.edit', [
             'model' => $linktag,
-
         ]);
     }
 
@@ -89,9 +92,9 @@ class LinkTagController extends Controller
      */
     public function update(Update $request, LinkTag $linktag)
     {
-        $linktag->fill($request->all());
+        
 
-        if ($linktag->save()) {
+        if ($this->linkTagRepository->update($request->all(), $linktag->id)) {
 
             session()->flash('app_message', 'LinkTag successfully updated');
             return redirect()->route('seo_link_tags.index');

@@ -14,6 +14,8 @@ use Rastventure\SEO\Http\Requests\MetaTags\Store;
 use Rastventure\SEO\Http\Requests\MetaTags\Update;
 use Rastventure\SEO\Models\MetaTag;
 use Rastventure\SEO\Models\PageMetaTag;
+use Rastventure\SEO\Repositories\MetaTagRepository;
+use Rastventure\SEO\Repositories\PageMetaTagRepository;
 
 /**
  * Description of MetaTagController
@@ -22,6 +24,17 @@ use Rastventure\SEO\Models\PageMetaTag;
  */
 class MetaTagController extends Controller
 {
+    protected $metaTagRepository;
+    protected $pageMetaTagRepository;
+    /**
+     * 
+     */
+    public function __construct(MetaTagRepository $metaTagRepository, PageMetaTagRepository $pageMetaTagRepository )
+    {
+        $this->metaTagRepository = $metaTagRepository;
+        $this->pageMetaTagRepository = $pageMetaTagRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -55,9 +68,7 @@ class MetaTagController extends Controller
      */
     public function store(Store $request)
     {
-        $model = new MetaTag;
-        $model->fill($request->all());
-        if ($model->save()) {
+        if ($this->metaTagRepository->save($request->all())) {
             session()->flash(config('seo.flash_message'), 'MetaTag saved successfully');
             return redirect()->route('meta-tags.index');
         } else {
@@ -89,10 +100,7 @@ class MetaTagController extends Controller
      */
     public function update(Update $request, MetaTag $meta_tag)
     {
-        $meta_tag->fill($request->all());
-
-        if ($meta_tag->save()) {
-
+        if ($this->metaTagRepository->update($request->all(), $meta_tag->id)) {
             session()->flash(config('seo.flash_message'), 'MetaTag successfully updated');
             return redirect()->route('seo::meta-tags.index');
         } else {
@@ -109,7 +117,7 @@ class MetaTagController extends Controller
     {
         $metaValues = $request->get('meta', []);
         foreach ($metaValues as $id => $content) {
-            $pageMeta = PageMetaTag::firstOrCreate(['seo_page_id' => null, 'seo_meta_tag_id' => $id]);
+            $pageMeta = $this->pageMetaTagRepository->firstOrCreate(['seo_page_id' => null, 'seo_meta_tag_id' => $id]);
             $pageMeta->content = $content;
             $pageMeta->save();
         }
