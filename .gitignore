@@ -28,5 +28,7 @@ yarn-error.log
 ./dbvolume
 dbvolume
 storage/framework
+storage/debugbar
+./storage/debugbar
 framework
 bootstrap/cache

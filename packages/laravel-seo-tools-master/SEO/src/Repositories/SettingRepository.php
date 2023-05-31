@@ -3,7 +3,7 @@
 namespace Rastventure\SEO\Repositories;
 
 use Webkul\Core\Eloquent\Repository;
-
+use Rastventure\SEO\Contracts\Setting;
 class SettingRepository extends Repository
 {
 
@@ -12,9 +12,8 @@ class SettingRepository extends Repository
      *
      * @return mixed
      */
-    function model()
-    {
-        return Rastventure\SEO\Contracts\Setting::class;
+    function model() {
+        return Setting::class;
     }
     /**
      * Create Setting.

@@ -3,7 +3,7 @@
 namespace Rastventure\SEO\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Rastventure\SEO\Contracts\Setting as SettingContract;
+use \Rastventure\SEO\Contracts\Setting as SettingContract;
 
 /**
  * @property varchar $key key

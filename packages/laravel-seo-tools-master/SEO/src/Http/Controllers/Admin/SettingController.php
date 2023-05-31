@@ -13,6 +13,7 @@ use Rastventure\SEO\Services\SiteMap;
 use Rastventure\SEO\Http\Requests\Pages\Store;
 use Rastventure\SEO\Http\Requests\Pages\Edit;
 use Rastventure\SEO\Http\Requests\Pages\Update;
+use Rastventure\SEO\Repositories\SettingRepository;
 use Webkul\Core\Repositories\CoreConfigRepository;
 use Webkul\Core\Tree;
 
@@ -39,6 +40,12 @@ class SettingController  extends \Webkul\Admin\Http\Controllers\Controller
     protected $coreConfigRepository;
 
     /**
+     * Setting repository instance.
+     * @var SettingRepository
+     */
+    protected $settingRepository;
+
+    /**
      * Tree instance.
      *
      * @var \Webkul\Core\Tree
@@ -51,12 +58,12 @@ class SettingController  extends \Webkul\Admin\Http\Controllers\Controller
      * @param  \Webkul\Core\Repositories\CoreConfigRepository  $coreConfigRepository
      * @return void
      */
-    public function __construct(CoreConfigRepository $coreConfigRepository)
+    public function __construct(CoreConfigRepository $coreConfigRepository, SettingRepository $settingRepository)
     {
         $this->middleware('admin');
 
         $this->coreConfigRepository = $coreConfigRepository;
-
+        $this->settingRepository = $settingRepository;
         $this->_config = request('_config');
 
         $this->prepareConfigTree();
