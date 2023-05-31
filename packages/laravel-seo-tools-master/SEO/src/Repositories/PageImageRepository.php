@@ -3,7 +3,7 @@
 namespace Rastventure\SEO\Repositories;
 
 use Webkul\Core\Eloquent\Repository;
-
+use Rastventure\SEO\Contracts\PageImage;
 class PageImageRepository extends Repository
 {
 
@@ -14,7 +14,7 @@ class PageImageRepository extends Repository
      */
     function model()
     {
-        return Rastventure\SEO\Contracts\PageImage::class;
+        return PageImage::class;
     }
 
     /**

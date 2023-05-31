@@ -5,6 +5,7 @@ namespace Rastventure\SEO\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Rastventure\SEO\Contracts\Page as PageContract;
 
 /**
  * @property varchar $path path
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\DB;
  * @property \Illuminate\Database\Eloquent\Collection $seoPageImage hasMany
  * @property \Illuminate\Database\Eloquent\Collection $seoPageMetaTag hasMany
  */
-class Page extends Model
+class Page extends Model implements PageContract
 {
 
     /**

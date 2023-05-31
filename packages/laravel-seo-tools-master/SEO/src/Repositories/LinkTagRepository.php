@@ -3,7 +3,7 @@
 namespace Rastventure\SEO\Repositories;
 
 use Webkul\Core\Eloquent\Repository;
-
+use Rastventure\SEO\Contracts\LinkTag;
 class LinkTagRepository extends Repository
 {
 
@@ -14,7 +14,7 @@ class LinkTagRepository extends Repository
      */
     function model()
     {
-        return Rastventure\SEO\Contracts\LinkTag::class;
+        return LinkTag::class;
     }
 
     /**

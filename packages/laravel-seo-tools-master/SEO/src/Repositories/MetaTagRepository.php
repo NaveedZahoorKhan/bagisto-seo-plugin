@@ -3,7 +3,7 @@
 namespace Rastventure\SEO\Repositories;
 
 use Webkul\Core\Eloquent\Repository;
-
+use Rastventure\SEO\Contracts\MetaTag;
 class MetaTagRepository extends Repository
 {
 
@@ -14,7 +14,7 @@ class MetaTagRepository extends Repository
      */
     function model()
     {
-        return Rastventure\SEO\Contracts\MetaTag::class;
+        return MetaTag::class;
     }
 
     /**

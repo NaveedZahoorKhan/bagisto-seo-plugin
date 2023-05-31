@@ -3,7 +3,7 @@
 namespace Rastventure\SEO\Repositories;
 
 use Webkul\Core\Eloquent\Repository;
-
+use Rastventure\SEO\Contracts\PageMetaTag;
 class PageMetaTagRepository extends Repository
 {
 
@@ -14,7 +14,7 @@ class PageMetaTagRepository extends Repository
      */
     function model()
     {
-        return Rastventure\SEO\Contracts\PageMetaTag::class;
+        return PageMetaTag::class;
     }
     /**
      * Create Page Meta Tag.
