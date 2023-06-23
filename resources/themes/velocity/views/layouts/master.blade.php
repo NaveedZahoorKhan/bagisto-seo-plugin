@@ -12,14 +12,16 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="base-url" content="{{ url()->to('/') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        
         {!! view_render_event('bagisto.shop.layout.head') !!}
 
         {{-- for extra head data --}}
         @yield('head')
-
-        {{-- seo meta data --}}
         @yield('seo')
+    
+        <!--  seo meta data -->
+        @seoTags()
+        <!--  end seo data -->
 
         {{-- fav icon --}}
         @if ($favicon = core()->getCurrentChannel()->favicon_url)

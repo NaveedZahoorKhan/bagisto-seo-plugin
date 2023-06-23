@@ -43,8 +43,7 @@ class Seo
     {
         $this->request = app('request');
         $path = $this->request->path();
-        $this->page = Page::whereIn('path', [trim($path, "/"), "/" . $path, url($path)])->first();
-
+        $this->page = Page::whereIn('path', [trim($path, "/"), "/", "/" . $path, url($path)])->first();
         if ($this->page) {
 
             if (config('seo.cache.driver') == 'file') {
