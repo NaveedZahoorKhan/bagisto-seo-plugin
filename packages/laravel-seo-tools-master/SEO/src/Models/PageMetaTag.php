@@ -3,7 +3,7 @@
 namespace Rastventure\SEO\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Rastventure\SEO\Contracts\PageMetaTag as PageMetaTagContract;
 /**
  * @property int $seo_page_id seo page id
  * @property int $seo_meta_tag_id seo meta tag id
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property SeoMetaTag $seoMetaTag belongsTo
  * @property SeoPage $seoPage belongsTo
  */
-class PageMetaTag extends Model
+class PageMetaTag extends Model implements PageMetaTagContract
 {
 
     /**

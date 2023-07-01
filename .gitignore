@@ -25,6 +25,10 @@ package-lock.json
 /vendor
 yarn.lock
 yarn-error.log
-./dbvolume/*
-storage/debugbar/
-dbvolume/*
+./dbvolume
+dbvolume
+storage/framework
+storage/debugbar
+./storage/debugbar
+framework
+bootstrap/cache

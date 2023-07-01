@@ -29,6 +29,7 @@ use Rastventure\SEO\Tag;
 use Rastventure\SEO\Seo;
 use Rastventure\SEO\Services\KeywordAnalysis;
 use Illuminate\Support\Facades\DB;
+use Rastventure\SEO\Repositories\PageRepository;
 
 /**
  * Description of PageController
@@ -37,6 +38,16 @@ use Illuminate\Support\Facades\DB;
  */
 class PageController extends Controller
 {
+
+    protected PageRepository $pageRepository;
+
+    /**
+     * 
+     */
+    public function __construct(PageRepository $pageRepository) {
+        $this->pageRepository = $pageRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *

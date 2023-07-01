@@ -14,7 +14,7 @@ use Rastventure\SEO\Http\Requests\Images\Store;
 use Rastventure\SEO\Http\Requests\Images\Update;
 use Rastventure\SEO\Models\Page;
 use Rastventure\SEO\Models\PageImage;
-
+use Rastventure\SEO\Repositories\PageImageRepository;
 
 /**
  * Description of PageController
@@ -23,6 +23,18 @@ use Rastventure\SEO\Models\PageImage;
  */
 class ImageController extends Controller
 {
+
+    protected $pageImageRepository;
+
+    /**
+     * 
+     */
+    public function __construct(PageImageRepository $pageImageRepository)
+    {
+        $this->pageImageRepository = $pageImageRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -65,11 +77,8 @@ class ImageController extends Controller
      */
     public function store(Store $request, Page $page)
     {
-        $model = new PageImage();
-        $model->fill($request->all());
-        $model->page_id = $page->id;
-
-        if ($model->save()) {
+        $request->merge(['page_id' => $page->id]);
+        if ($this->pageImageRepository->save($request->all())) {
             session()->flash(config('seo.flash_message'), 'Image saved successfully');
             return redirect()->route('seo::pages.images.index', $page->id);
         } else {
@@ -104,9 +113,8 @@ class ImageController extends Controller
      */
     public function update(Update $request, Page $page, PageImage $pageImage)
     {
-        $pageImage->fill($request->all());
 
-        if ($pageImage->save()) {
+        if ($this->pageImageRepository->update($request->all(), $pageImage->id)) {
             session()->flash(config('seo.flash_message'), 'Image successfully updated');
             return redirect()->route('seo::pages.images.index', $page->id);
         } else {

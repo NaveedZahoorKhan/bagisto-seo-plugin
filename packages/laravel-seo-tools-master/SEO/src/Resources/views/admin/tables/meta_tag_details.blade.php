@@ -22,10 +22,10 @@
             <td> {{$record->group }} </td>
             <td> {{$record->visibility }} </td>
             <td>
-                <a href="{{route('seo::meta-tags.edit',$record->id)}}">
+                <a href="{{route('meta-tags.edit',$record->id)}}">
                     <span class="fa fa-pencil"></span>
                 </a>
-                @include('seo::forms.destroy',['route'=>route('seo::meta-tags.destroy',$record->id)])
+                @include('seo::admin.forms.destroy',['route'=>route('meta-tags.destroy',$record->id)])
             </td>
         </tr>
 

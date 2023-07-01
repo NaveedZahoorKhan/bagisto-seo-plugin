@@ -3,6 +3,7 @@
 namespace Rastventure\SEO\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use \Rastventure\SEO\Contracts\Setting as SettingContract;
 
 /**
  * @property varchar $key key
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property timestamp $created_at created at
  * @property timestamp $updated_at updated at
  */
-class Setting extends Model
+class Setting extends Model implements SettingContract
 {
 
     /**

@@ -2,8 +2,8 @@
 
 namespace Rastventure\SEO\Providers;
 
-use App\Policies\Seo\MetaTagPolicy;
-use App\Policies\Seo\SettingPolicy;
+use Rastventure\SEO\Policies\MetaTagPolicy;
+use Rastventure\SEO\Policies\SettingPolicy;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Blade;
@@ -57,6 +57,15 @@ class SeoServiceProvider extends ServiceProvider
                 $viewRenderEventManager->addTemplate('seo::admin.layouts.scripts');
             });
         }
+
+        $blade = app('view')->getEngineResolver()->resolve('blade')->getCompiler();
+        $blade->directive('seoForm', function ($model) {
+            return "<?php echo \Rastventure\SEO\Seo::form($model); ?>";
+        });
+        
+        $blade->directive('seoTags', function ($model) {
+            return "{{ print((new \Rastventure\SEO\Seo())->tags()); }}";
+        });
     }
 
     /**
@@ -93,13 +102,7 @@ class SeoServiceProvider extends ServiceProvider
             __DIR__ . '/../Config/seo.php',
             'seo'
         );
-        $blade = app('view')->getEngineResolver()->resolve('blade')->getCompiler();
-        $blade->directive('seoForm', function ($model) {
-            return "<?php echo \Rastventure\SEO\Seo::form($model); ?>";
-        });
-        $blade->directive('seoTags', function ($model) {
-            return "<?php print((new \Rastventure\SEO\Seo())->tags()); ?>";
-        });
+        
         Event::listen(['eloquent.saved: *', 'eloquent.created: *'], function ($name, $models) {
             $modelConfig = config('rastventure.seo.models');
             if (empty($modelConfig)) {

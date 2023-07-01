@@ -1,6 +1,6 @@
 <?php
 
-namespace SEO\Http\Requests\MetaTags;
+namespace Rastventure\SEO\Http\Requests\MetaTags;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +14,7 @@ class Edit extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('update', $this->route('meta_tag'));
+        return auth()->guard('admin')->user()->can('update', $this->route('meta_tag'));
     }
 
     /**

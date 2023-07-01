@@ -16,7 +16,7 @@ class ImagePolicy
      */
     public function before(User $user)
     {
-        if (method_exists($user, 'isSuperAdmin') && $user->isSuperAdmin()) {
+        if (isset($user->role()->first()->name) && $user->role()->first()->name === "Administrator") {
             return true;
         }
     }

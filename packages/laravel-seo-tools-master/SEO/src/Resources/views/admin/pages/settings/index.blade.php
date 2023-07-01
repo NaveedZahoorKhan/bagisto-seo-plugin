@@ -1,6 +1,6 @@
 @extends('admin::layouts.content')
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('admin.seo.dashboard.index')}}"> Dashboard</a></li>
+<li class="breadcrumb-item"><a href="{{route('dashboard.index')}}"> Dashboard</a></li>
 <li class="breadcrumb-item">Settings</li>
 @endsection
 @section('content-wrapper')
@@ -13,8 +13,8 @@
 
 </nav>
 <div class="tab-content mt-3" id="nav-tabContent">
-    @include('seo::tabs.site')
-    @include('seo::tabs.page')
+    @include('seo::admin.tabs.site')
+    @include('seo::admin.tabs.page')
 </div>
 
 @endSection
