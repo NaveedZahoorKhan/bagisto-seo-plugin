@@ -133,6 +133,14 @@
                                 <textarea type="text" class="control" name="{{$locale}}[meta_description]">{{ old($locale)['meta_description'] ?? ($page->translate($locale)['meta_description'] ?? '') }}</textarea>
 
                             </div>
+
+
+                            <div class="control-group">
+                                <label for="meta_description">Canonical URL</label>
+
+                                <input type="text" class="control" name="canonical_url">{{ old($locale)['canonical_url'] ?? ($page->translate($locale)['canonical_url'] ?? '') }}</textarea>
+
+                            </div>
                         </div>
                     </accordian>
                 </div>

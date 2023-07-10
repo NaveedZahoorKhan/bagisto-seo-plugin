@@ -14,7 +14,7 @@
 
             <div class="page-actions">
                 <a class="btn btn-sm btn-primary" href="{{ route('meta-tags.create') }}">
-                    <i class="icon-plus-circle"></i> {{ __('seo::admin.app.meta-tags.add-title') }}
+                    <i class="icon-plus-circle"></i> New Tag
                 </a>
             </div>
         </div>

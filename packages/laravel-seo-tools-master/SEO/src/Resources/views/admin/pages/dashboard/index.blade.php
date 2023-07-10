@@ -1,6 +1,6 @@
 @extends(config('seo.layout'))
 @section('page_title')
-<i class="fa fa-home text-muted"></i> Dashboard
+ Dashboard
 @endsection
 @section('tools')
 @endsection
