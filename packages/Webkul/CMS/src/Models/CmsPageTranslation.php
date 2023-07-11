@@ -18,5 +18,8 @@ class CmsPageTranslation extends Model implements CmsPageTranslationContract
         'meta_keywords',
         'locale',
         'cms_page_id',
+        'canonical_url',
+        'robot_index',
+        'robot_follow'
     ];
 }

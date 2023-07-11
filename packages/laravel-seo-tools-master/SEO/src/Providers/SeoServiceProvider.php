@@ -16,6 +16,7 @@ use Rastventure\SEO\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use Rastventure\SEO\Policies\ImagePolicy;
 use Rastventure\SEO\Policies\PagePolicy;
+use Webkul\CMS\Models\CmsPage;
 
 class SeoServiceProvider extends ServiceProvider
 {
@@ -57,12 +58,26 @@ class SeoServiceProvider extends ServiceProvider
                 $viewRenderEventManager->addTemplate('seo::admin.layouts.scripts');
             });
         }
+        Event::listen('cms.pages.update.after', function ($id) {
+            $cmsPage = CmsPage::find($id);
 
+            if (empty($cmsPage))
+                return;
+            $data = $cmsPage->translate('en');
+            Page::updateOrCreate(
+                ['path' => $data['url_key']],
+                [
+                    'title' => $data['page_title'], 'path' => $data['url_key'],
+                    'robot_index' => $data['robot_index'], 'robot_follow' => $data['robot_follow'],
+                    'canonical_url' => $data['canonical_url'], 'description' => $data['meta_description']
+                ]
+            );
+        });
         $blade = app('view')->getEngineResolver()->resolve('blade')->getCompiler();
         $blade->directive('seoForm', function ($model) {
             return "<?php echo \Rastventure\SEO\Seo::form($model); ?>";
         });
-        
+
         $blade->directive('seoTags', function ($model) {
             return "{{ print((new \Rastventure\SEO\Seo())->tags()); }}";
         });
@@ -102,7 +117,7 @@ class SeoServiceProvider extends ServiceProvider
             __DIR__ . '/../Config/seo.php',
             'seo'
         );
-        
+
         Event::listen(['eloquent.saved: *', 'eloquent.created: *'], function ($name, $models) {
             $modelConfig = config('rastventure.seo.models');
             if (empty($modelConfig)) {

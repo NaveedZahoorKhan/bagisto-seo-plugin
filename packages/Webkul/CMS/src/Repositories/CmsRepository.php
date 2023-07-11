@@ -4,6 +4,7 @@ namespace Webkul\CMS\Repositories;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Webkul\CMS\Models\CmsPageTranslation;
 use Webkul\Core\Eloquent\Repository;
 use Webkul\CMS\Models\CmsPageTranslationProxy;
 
@@ -63,7 +64,6 @@ class CmsRepository extends Repository
         $locale = isset($data['locale']) ? $data['locale'] : app()->getLocale();
 
         $data[$locale]['html_content'] = str_replace('=&gt;', '=>', $data[$locale]['html_content']);
-
         parent::update($data, $id, $attribute);
 
         $page->channels()->sync($data['channels']);

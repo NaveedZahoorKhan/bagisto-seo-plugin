@@ -117,7 +117,6 @@ class PageController extends Controller
             $locale . '.html_content' => 'required',
             'channels'                => 'required',
         ]);
-
         $this->cmsRepository->update(request()->all(), $id);
 
         session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Page']));
