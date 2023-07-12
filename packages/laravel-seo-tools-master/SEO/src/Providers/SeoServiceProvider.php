@@ -65,8 +65,9 @@ class SeoServiceProvider extends ServiceProvider
                 return;
             $data = $cmsPage->translate('en');
             Page::updateOrCreate(
-                ['path' => $data['url_key']],
+                ['cms_page_id' => $cmsPage->id],
                 [
+                    'cms_page_id' => $cmsPage->id,
                     'title' => $data['page_title'], 'path' => $data['url_key'],
                     'robot_index' => $data['robot_index'], 'robot_follow' => $data['robot_follow'],
                     'canonical_url' => $data['canonical_url'], 'description' => $data['meta_description']

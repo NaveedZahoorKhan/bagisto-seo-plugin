@@ -39,7 +39,8 @@ class Page extends Model implements PageContract
         'change_frequency',
         'priority',
         'schema',
-        'focus_keyword'
+        'focus_keyword',
+        'cms_page_id'
     ];
 
 

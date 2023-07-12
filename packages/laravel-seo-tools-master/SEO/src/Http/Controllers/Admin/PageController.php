@@ -30,6 +30,7 @@ use Rastventure\SEO\Seo;
 use Rastventure\SEO\Services\KeywordAnalysis;
 use Illuminate\Support\Facades\DB;
 use Rastventure\SEO\Repositories\PageRepository;
+use Webkul\CMS\Models\CmsPageTranslation;
 
 /**
  * Description of PageController
@@ -44,7 +45,8 @@ class PageController extends Controller
     /**
      * 
      */
-    public function __construct(PageRepository $pageRepository) {
+    public function __construct(PageRepository $pageRepository)
+    {
         $this->pageRepository = $pageRepository;
     }
 
@@ -137,7 +139,7 @@ class PageController extends Controller
 
         if ($model->save()) {
             $model->saveMeta(request()->get('meta', []));
-            $model->saveMeta(Seo::upload(request()->file('meta',[]), $model));
+            $model->saveMeta(Seo::upload(request()->file('meta', []), $model));
             $tag = new Tag($model);
             $tag->make()->save();
             session()->flash(config('seo.flash_message'), 'Page saved successfully');
@@ -199,10 +201,26 @@ class PageController extends Controller
     public function update(Update $request, Page $page)
     {
         $page->fill($request->get('page'));
-
+        $cmsPage = CmsPageTranslation::where([
+            'cms_page_id' => $page->cms_page_id,
+            'locale' => 'en'
+        ])->first();
+        if (empty($cmsPage)) {
+            session()->flash(config('seo.flash_error'), 'Something is wrong while updating Page');
+            return redirect()->back();
+        }
         if ($page->save()) {
+            $cmsPage->page_title = $page->title;
+            $cmsPage->url_key = $page->path;
+            $cmsPage->canonical_url = $page->canonical_url;
+            $cmsPage->robot_index = $page->robot_index;
+            $cmsPage->robot_follow = $page->robot_follow;
+            $cmsPage->meta_description = $page->description;
+            $cmsPage->meta_title = $page->title;
+
+            $cmsPage->update();
             $page->saveMeta(request()->get('meta', []));
-            $page->saveMeta(Seo::upload(request()->file('meta',[]), $page));
+            $page->saveMeta(Seo::upload(request()->file('meta', []), $page));
             $tag = new Tag($page);
             $tag->make()->save();
             session()->flash(config('seo.flash_message'), 'Page successfully updated');
@@ -235,7 +253,6 @@ class PageController extends Controller
                 $pageModel->save();
                 $tag = new Tag($pageModel);
                 $tag->make()->save();
-
             }
         }
         return redirect()->back()->with(config('seo.flash_message'), 'Pages saved successfully');
@@ -344,7 +361,7 @@ class PageController extends Controller
         $pages = Page::all($headline);
         $fileManager = new FileCsv();
         $filePath = storage_path('app/public/pages/' . uniqid(date('Ymd_')) . '.csv');
-        if(!file_exists(storage_path('app/public/pages'))){
+        if (!file_exists(storage_path('app/public/pages'))) {
             mkdir(storage_path('app/public/pages'), 0777, true);
         }
         $data = [];
@@ -424,7 +441,7 @@ class PageController extends Controller
 
         $zip = new \ZipArchive;
         $zip->open($zipname, \ZipArchive::CREATE);
-        
+
         $dir = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($cachePath), \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($dir as $name => $it) {
             if (in_array($it->getBasename(), [".", ".."])) {
@@ -434,7 +451,7 @@ class PageController extends Controller
             $filePath = is_object($pageModel) ? $pageModel->path . '.html' : $it->getBasename();
             $zip->addFile($it->getPathname(), $filePath);
         }
- 
+
         $zip->close();
         if (file_exists($zipname)) {
             return response()->download($zipname);
