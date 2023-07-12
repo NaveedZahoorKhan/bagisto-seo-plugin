@@ -3,7 +3,7 @@
 
     <head>
         {{-- title --}}
-        <title>@yield('page_title')</title>
+        <!-- <title>@yield('page_title')</title> -->
 
         {{-- meta data --}}
         <meta charset="utf-8">
@@ -17,7 +17,7 @@
 
         {{-- for extra head data --}}
         @yield('head')
-        @yield('seo')
+        <!-- @yield('seo') -->
     
         <!--  seo meta data -->
         @seoTags()
