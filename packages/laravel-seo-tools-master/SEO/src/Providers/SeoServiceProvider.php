@@ -74,6 +74,19 @@ class SeoServiceProvider extends ServiceProvider
                 ]
             );
         });
+        Event::listen('cms.pages.create.after', function($cmsPage){
+            $data = $cmsPage->translate('en');
+
+            Page::updateOrCreate(
+                ['cms_page_id' => $cmsPage->id],
+                [
+                    'cms_page_id' => $cmsPage->id,
+                    'title' => $data['page_title'], 'path' => $data['url_key'],
+                    'robot_index' => $data['robot_index'], 'robot_follow' => $data['robot_follow'],
+                    'canonical_url' => $data['canonical_url'], 'description' => $data['meta_description']
+                ]
+            );
+        });
         $blade = app('view')->getEngineResolver()->resolve('blade')->getCompiler();
         $blade->directive('seoForm', function ($model) {
             return "<?php echo \Rastventure\SEO\Seo::form($model); ?>";

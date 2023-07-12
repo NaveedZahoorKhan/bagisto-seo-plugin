@@ -27,10 +27,10 @@
                 <input type="submit" value="Refresh Cache" class="btn btn-outline-secondary">
             </form>
         @endif
-        <a href="{{route('pages.bulkEdit')}}" class="btn btn-outline-secondary">
+        <!-- <a href="{{route('pages.bulkEdit')}}" class="btn btn-outline-secondary">
             <i class="fa fa-pencil-square-o"></i> Bulk Edit
-        </a>
-        <a class="btn btn-outline-secondary" href="{{route('pages.create')}}"><i class="fa fa-plus"></i></a>
+        </a> -->
+        <!-- <a class="btn btn-outline-secondary" href="{{route('pages.create')}}"><i class="fa fa-plus"></i></a> -->
     </div>
     <form method="get" class="m-form">
         <div class="row">
