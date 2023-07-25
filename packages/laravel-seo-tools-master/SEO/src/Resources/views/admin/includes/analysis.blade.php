@@ -1,5 +1,4 @@
 <div class="row">
-
     @if(isset($data['success']) && !empty($data['success']))
     <div class="col-sm-9">
         <table class="table table-bordered" style="overflow-y: auto">
@@ -67,7 +66,7 @@
                     <th>H1 heading status</th>
                     <td>
                         @if(isset($data['headings']['h1']) && count($data['headings']['h1'])>0)
-                        @include('seo::includes.heading-analysis',['level'=>1,'tags'=>$data['headings']['h1']])
+                        @include('seo::admin.includes.heading-analysis',['level'=>1,'tags'=>$data['headings']['h1']])
                         @else
                         <i class="fa fa-remove text-danger fa-3x"></i>
                         @endif
@@ -77,7 +76,7 @@
                     <th>H2 heading status</th>
                     <td>
                         @if(isset($data['headings']['h2']) && count($data['headings']['h2'])>0)
-                        @include('seo::includes.heading-analysis',['level'=>2,'tags'=>$data['headings']['h2']])
+                        @include('seo::admin.includes.heading-analysis',['level'=>2,'tags'=>$data['headings']['h2']])
                         @else
                         <i class="fa fa-remove text-danger fa-2x"></i>
                         @endif
@@ -88,7 +87,7 @@
                     <th>H3 heading status</th>
                     <td>
                         @if(isset($data['headings']['h3']) && count($data['headings']['h3'])>0)
-                        @include('seo::includes.heading-analysis',['level'=>3,'tags'=>$data['headings']['h3']])
+                        @include('seo::admin.includes.heading-analysis',['level'=>3,'tags'=>$data['headings']['h3']])
                         @else
                         <i class="fa fa-remove text-danger fa-2x"></i>
                         @endif
@@ -113,6 +112,9 @@
                                     <div class="card-block">
                                         <table class="table table-bordered" style="overflow-y: auto">
                                             @foreach($data['anchors'] as $f)
+                                            @if(!isset($f['href']))
+                                            @continue
+                                            @endif
                                             <tr>
                                                 <td style="word-break: break-all">{{$f['href'] or ''}}</td>
                                                 <td>{{$f['text'] or ''}}</td>

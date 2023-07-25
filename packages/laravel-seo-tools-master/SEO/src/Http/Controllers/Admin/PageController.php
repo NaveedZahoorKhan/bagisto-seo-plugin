@@ -88,13 +88,13 @@ class PageController extends Controller
             'success' => false
         ];
         $pageAnalysis = new KeywordAnalysis($page->getFullUrl(), $page->keyword);
-        if ($pageAnalysis->isSuccess()) {
 
-            $data = array_merge($pageAnalysis->fromCache()->save()->toArray(), $data);
+        if ($pageAnalysis->isSuccess()) {
+            $data = array_merge($pageAnalysis->save()->toArray(), $data);
             $data['result'] = $pageAnalysis->run()->result();
             $data['success'] = true;
         }
-        return view('seo::pages.pages.show', $data);
+        return view('seo::admin.pages.pages.show', ['data' => $data]);
     }
 
     /**

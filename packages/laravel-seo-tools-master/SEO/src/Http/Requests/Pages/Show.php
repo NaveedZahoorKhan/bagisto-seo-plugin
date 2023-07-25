@@ -14,7 +14,7 @@ class Show extends FormRequest
      */
     public function authorize()
     {
-        return auth()->guard('customer')->user()->can('view', $this->route('page'));
+        return auth()->guard('admin')->user()->can('update', $this->route('page'));
     }
 
     /**

@@ -14,7 +14,7 @@ $location = str_replace('\\', '/', getcwd());
 $currentLocation = explode("/", $location);
 $desiredLocation = implode("/", $currentLocation);
 $installFile = $desiredLocation . '/installer' . '/install.php';
-
+ini_set('max_execution_time', '300');
 if (file_exists($installFile)) {
     $install = require __DIR__.'/installer/install.php';
 } else {
